@@ -66,6 +66,7 @@ export default function App() {
                 <div className="container">
                   <div className="section-title">
                     <h2>Tỷ Giá Ngoại Tệ</h2>
+                    <h1>haha</h1>
                   </div>
                   <ExchangeRateTable />
                 </div>
