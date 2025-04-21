@@ -8,7 +8,7 @@ const GoldPriceTable = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8383/api/gold-prices/current-gold-prices')
+            .get('https://goldenages-3.onrender.com/api/gold-prices/current-gold-prices')
             .then((response) => {
                 if (response.data && Array.isArray(response.data)) {
                     const filteredData = removeDuplicatesByKey(response.data, 'goldName');
@@ -35,7 +35,7 @@ const GoldPriceTable = () => {
             <div className="text-center">Loading gold prices...</div>
         </div>
     );
-    
+
     if (error) return (
         <div className="container" style={{ marginTop: '100px' }}>
             <div className="alert alert-danger">{error}</div>
@@ -64,13 +64,13 @@ const GoldPriceTable = () => {
                                     <td>{goldPrice.goldName || 'N/A'}</td>
                                     <td>{goldPrice.goldType || 'N/A'}</td>
                                     <td className="text-end">
-                                        {goldPrice.purchasePrice 
-                                            ? `${goldPrice.purchasePrice.toLocaleString('vi-VN')} VNĐ` 
+                                        {goldPrice.purchasePrice
+                                            ? `${goldPrice.purchasePrice.toLocaleString('vi-VN')} VNĐ`
                                             : 'N/A'}
                                     </td>
                                     <td className="text-end">
-                                        {goldPrice.sellPrice 
-                                            ? `${goldPrice.sellPrice.toLocaleString('vi-VN')} VNĐ` 
+                                        {goldPrice.sellPrice
+                                            ? `${goldPrice.sellPrice.toLocaleString('vi-VN')} VNĐ`
                                             : 'N/A'}
                                     </td>
                                 </tr>

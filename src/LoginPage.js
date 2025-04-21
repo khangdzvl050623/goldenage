@@ -11,32 +11,32 @@ export default function LoginPage({setUser}) {
 
   const handleSubmit = async () => {
     try {
-      const res = await fetch(`http://localhost:8383/api/users/login`, {
+      const res = await fetch(`https://goldenages-3.onrender.com/api/users/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(form),
       });
-      
+
       if (res.ok) {
         const data = await res.json();
         // Lưu token
         localStorage.setItem("token", data.token);
-        
+
         // Giải mã token và lấy thông tin user
         const payload = JSON.parse(atob(data.token.split(".")[1]));
-        
+
         // Lưu thông tin user vào localStorage
         localStorage.setItem("user", JSON.stringify({
           email: payload.sub,
           role: payload.role
         }));
-        
+
         // Set user state
         setUser({email: payload.sub, role: payload.role});
-        
+
         // Chuyển hướng về trang chủ
         navigate("/");
-        
+
         // Refresh để cập nhật navigation
         window.location.reload();
       } else {

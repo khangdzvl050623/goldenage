@@ -9,7 +9,7 @@ export default function ExchangeRateTable() {
     useEffect(() => {
         // Gọi API lấy tỷ giá hối đoái
         axios
-            .get('http://localhost:8383/api/exchange-rate/current-exchange-rate')
+            .get('https://goldenages-3.onrender.com/api/exchange-rate/current-exchange-rate')
             .then((response) => {
                 if (response.data && Array.isArray(response.data)) {
                     const uniqueRates = filterUniqueCurrencyCodes(response.data);
