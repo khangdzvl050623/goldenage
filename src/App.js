@@ -1,24 +1,18 @@
 import "./App.css";
 import "./styles/images.css";
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import GoldPriceTable from "./GoldPriceTable";
 import ExchangeRateTable from "./ExchangeRateTable";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import { Navigation } from "./components/navigation";
 import { Header } from "./components/header";
-import { Features } from "./components/features";
-import { About } from "./components/about";
-import { Services } from "./components/services";
-import { Gallery } from "./components/gallery";
-import { Testimonials } from "./components/testimonials";
-import { Team } from "./components/Team";
+import { News } from "./components/News";
 import { Contact } from "./components/contact";
 import JsonData from "./data/data.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import './App.css';  // hoặc App.css
 import { ErrorBoundary } from 'react-error-boundary';
 
 function ErrorFallback({error}) {
@@ -43,11 +37,6 @@ export default function App() {
     }
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-  };
-
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <div>
@@ -56,31 +45,21 @@ export default function App() {
           <Route path="/" element={
             <>
               <Header data={landingPageData.Header} />
-              <Features data={landingPageData.Features} />
-              <About data={landingPageData.About} />
-              <Services data={landingPageData.Services} />
-              <Gallery data={landingPageData.Gallery} />
-              <Testimonials data={landingPageData.Testimonials} />
-              <Team data={landingPageData.Team} />
-              <div id="exchange-rate" className="text-center">
-                <div className="container">
-                  <div className="section-title">
-                    <h2>Tỷ Giá Ngoại Tệ</h2>
-                    <h1>haha</h1>
-                  </div>
-                  <ExchangeRateTable />
-                </div>
-              </div>
-              <div id="gold-price" className="text-center">
-                <div className="container">
-                  <div className="section-title">
-                    <h2>Giá Vàng</h2>
-                  </div>
-                  <GoldPriceTable />
-                </div>
-              </div>
+              <News />
               <Contact data={landingPageData.Contact} />
             </>
+          } />
+          <Route path="/exchangerate" element={
+            <div className="container" style={{ marginTop: '100px' }}>
+              <h2 className="text-center mb-4">Tỷ Giá Ngoại Tệ</h2>
+              <ExchangeRateTable />
+            </div>
+          } />
+          <Route path="/goldprice" element={
+            <div className="container" style={{ marginTop: '100px' }}>
+              <h2 className="text-center mb-4">Giá Vàng</h2>
+              <GoldPriceTable />
+            </div>
           } />
           <Route path="/login" element={<LoginPage setUser={setUser} />} />
           <Route path="/register" element={<RegisterPage setUser={setUser} />} />

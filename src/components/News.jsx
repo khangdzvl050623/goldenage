@@ -1,0 +1,88 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+export const News = () => {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get('https://goldenages-3.onrender.com/scrape/history');
+      console.log('Articles data:', response.data); // Debug log
+      setArticles(response.data);
+      setLoading(false);
+    } catch (err) {
+      setError('Failed to fetch articles');
+      setLoading(false);
+      console.error('Error fetching articles:', err);
+    }
+  };
+
+  if (loading) return <div className="container mt-5">Loading...</div>;
+  if (error) return <div className="container mt-5 text-danger">{error}</div>;
+
+  return (
+    <div className="container" style={{ marginTop: '100px' }}>
+      {/* Featured Article */}
+      {articles.length > 0 && (
+        <div className="row mb-4">
+          <div className="col-12">
+            <div className="card">
+              <div className="row g-0">
+                <div className="col-md-8">
+                  <img 
+                    src={articles[0].imageUrl} 
+                    className="img-fluid w-100" 
+                    alt={articles[0].title}
+                    style={{ maxHeight: '400px', objectFit: 'cover' }}
+                  />
+                </div>
+                <div className="col-md-4">
+                  <div className="card-body">
+                    <h3 className="card-title">{articles[0].title}</h3>
+                    <p className="card-text">{articles[0].description}</p>
+                    <p className="card-text">
+                      <small className="text-muted">
+                        {new Date(articles[0].dateTime).toLocaleString()}
+                      </small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* List of Articles */}
+      <div className="row">
+        {articles.slice(1).map((article, index) => (
+          <div key={article.id || index} className="col-md-4 mb-4">
+            <div className="card h-100">
+              <img 
+                src={article.imageUrl} 
+                className="card-img-top" 
+                alt={article.title}
+                style={{ height: '200px', objectFit: 'cover' }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{article.title}</h5>
+                <p className="card-text text-truncate">{article.description}</p>
+                <p className="card-text">
+                  <small className="text-muted">
+                    {new Date(article.dateTime).toLocaleString()}
+                  </small>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}; 

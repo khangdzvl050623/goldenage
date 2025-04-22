@@ -36,28 +36,10 @@ export const Navigation = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/#features">Features</a>
+              <Link className="nav-link" to="/exchangerate">Exchange Rate</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#about">About</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/#services">Services</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/#portfolio">Gallery</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/#testimonials">Testimonials</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/#team">Team</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/#exchange-rate">Exchange Rate</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/#gold-price">Gold Price</a>
+              <Link className="nav-link" to="/goldprice">Gold Price</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/#contact">Contact</a>
