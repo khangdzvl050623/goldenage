@@ -26,7 +26,6 @@ export const News = () => {
   // xử lý lỗi hình ảnh
   const handleImageError = (e) => {
     e.target.src = '/placeholder.jpg'; // Hình mặc định khi lỗi
-
   };
 
   const isBase64Image = (url) => {
@@ -55,7 +54,7 @@ export const News = () => {
       {articles.length > 0 && (
         <div className="row mb-4">
           <div className="col-12">
-            <div className="card">
+            <div className="card" style={{ border: 'none' }}>
               <div className="row g-0">
                 <div className="col-md-8">
                   {articles[0].mediaType === 'video' ? (
@@ -105,44 +104,51 @@ export const News = () => {
       {/* List of Articles */}
       <div className="row">
         {articles.slice(1).map((article, index) => (
-          <div key={article.id || index} className="col-md-4 mb-4">
-            <div className="card h-100">
-              {article.mediaType === 'video' ? (
-                <video
-                  className="card-img-top"
-                  controls
-                  style={{
-                    height: '200px',
-                    objectFit: 'cover',
-                    backgroundColor: '#f8f9fa'
-                  }}
-                >
-                  <source src={article.mediaUrl} type="video/mp4" />
-                  Your browser does not support video playback.
-                </video>
-              ) : (
-                <img
-                  src={getImageUrl(article.mediaUrl)}
-                  className="card-img-top"
-                  alt={article.title || 'News image'}
-                  onError={handleImageError}
-                  loading="lazy"
-                  style={{
-                    height: '200px',
-                    objectFit: 'cover',
-                    backgroundColor: '#f8f9fa'
-                  }}
-                />
-              )}
-              <div className="card-body">
-                <h5 className="card-title">{article.title}</h5>
-                <p className="card-text text-truncate">{article.description}</p>
-                <p className="card-text">
-                  <small className="text-muted">
-                    {new Date(article.dateTime).toLocaleString()}
-                  </small>
-                </p>
+          <div key={article.id || index} className="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+            {/* tạo đường dẫn bài báo */}
+            <div
+              onClick={() => window.open(article.link, "_blank")}
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
+            >
+              <div className="card h-100" style={{ border: 'none' }}>
+                {article.mediaType === 'video' ? (
+                  <video
+                    className="card-img-top"
+                    controls
+                    style={{
+                      height: '200px',
+                      objectFit: 'cover',
+                      backgroundColor: '#f8f9fa'
+                    }}
+                  >
+                    <source src={article.mediaUrl} type="video/mp4" />
+                    Your browser does not support video playback.
+                  </video>
+                ) : (
+                  <img
+                    src={getImageUrl(article.mediaUrl)}
+                    className="card-img-top"
+                    alt={article.title || 'News image'}
+                    onError={handleImageError}
+                    loading="lazy"
+                    style={{
+                      height: '200px',
+                      objectFit: 'cover',
+                      backgroundColor: '#f8f9fa'
+                    }}
+                  />
+                )}
+                <div className="card-body">
+                  <h5 className="card-title">{article.title}</h5>
+                  <p className="card-text text-truncate">{article.description}</p>
+                  <p className="card-text">
+                    <small className="text-muted">
+                      {new Date(article.dateTime).toLocaleString()}
+                    </small>
+                  </p>
+                </div>
               </div>
+            <hr />
             </div>
           </div>
         ))}
