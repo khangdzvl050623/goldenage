@@ -11,7 +11,7 @@ export default function LoginPage({setUser}) {
 
   const handleSubmit = async () => {
     try {
-      const res = await fetch(`https://goldenages-3.onrender.com/api/users/login`, {
+      const res = await fetch(`https://goldenages.online/api/users/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(form),

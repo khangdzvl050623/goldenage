@@ -12,7 +12,7 @@ export default function RegisterPage({ setUser }) {
 
   const handleSubmit = async () => {
     try {
-      const res = await fetch(`https://goldenages-3.onrender.com/api/users/register`, {
+      const res = await fetch(`https://goldenages.online/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

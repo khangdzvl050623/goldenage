@@ -12,7 +12,7 @@ export const News = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await axios.get('https://goldenages-3.onrender.com/scrape/history');
+      const response = await axios.get('https://goldenages.online/api/scrape/history');
       console.log('Articles data:', response.data); // Debug log
       setArticles(response.data);
       setLoading(false);

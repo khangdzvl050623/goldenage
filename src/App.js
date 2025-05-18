@@ -44,7 +44,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <Header data={landingPageData.Header} />
+              {/*<Header data={landingPageData.Header} />*/}
               <News />
               <Contact data={landingPageData.Contact} />
             </>

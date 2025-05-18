@@ -8,10 +8,10 @@ const GoldPriceTable = () => {
 
     useEffect(() => {
         axios
-            .get('https://goldenages-3.onrender.com/api/gold-prices/current-gold-prices')
+            .get('https://goldenages.online/api/gold-prices/current-gold-prices')
             .then((response) => {
                 if (response.data && Array.isArray(response.data)) {
-                    const filteredData = removeDuplicatesByKey(response.data, 'goldName');
+                    const filteredData = getLatestGoldPrices(response.data, 'goldName', 'updatedTime');
                     setGoldPrices(filteredData);
                 } else {
                     setGoldPrices([]);
@@ -24,10 +24,14 @@ const GoldPriceTable = () => {
             .finally(() => setLoading(false));
     }, []);
 
-    const removeDuplicatesByKey = (array, key) => {
-        return array.filter((item, index, self) =>
-            index === self.findIndex((t) => t[key] === item[key])
-        );
+    const getLatestGoldPrices = (array, key, timeKey) => {
+        const map = {};
+        array.forEach(item => {
+            if (!map[item[key]] || new Date(item[timeKey]) > new Date(map[item[key]][timeKey])) {
+                map[item[key]] = item;
+            }
+        });
+        return Object.values(map);
     };
 
     if (loading) return (
