@@ -67,6 +67,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
 
 .card-img-top {
   background-color: #f8f9fa;
@@ -106,4 +112,9 @@
   100% {
     background-position: -200% 0;
   }
+}
+
+.custom-card.news-card {
+  max-height: 600px; /* hoặc giá trị phù hợp */
+  overflow: auto;
 }

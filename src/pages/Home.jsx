@@ -1,12 +1,14 @@
-import React from "react";
 import Card from '../components/Cart';
 import FeaturedNews from '../components/FeaturedNews';
 import NewsCard from '../components/NewsCard';
-import useArticles from '../hooks/useArticles';
+import GoldPriceChart from '../components/GoldPriceChart';
+import GoldPriceTable from '../tables/GoldPriceTable';
+import ExchangeRateTable from '../tables/ExchangeRateTable';
 import { Contact } from "../components/contact";
 import '../styles/Dashboard.css';
+import useArticles from '../hooks/useArticles';
 
-const NewsPage = ({ contactData }) => {
+export default function Home({ contactData }) {
   const { articles, loading, error } = useArticles();
 
   if (loading) return <div>Đang tải...</div>;
@@ -32,10 +34,17 @@ const NewsPage = ({ contactData }) => {
             <NewsCard article={article} />
           </Card>
         ))}
+        <Card>
+          <GoldPriceChart />
+        </Card>
+        <Card>
+          <GoldPriceTable />
+        </Card>
+        <Card>
+          <ExchangeRateTable />
+        </Card>
       </div>
       <Contact data={contactData} />
     </div>
   );
-};
-
-export default NewsPage;
+}

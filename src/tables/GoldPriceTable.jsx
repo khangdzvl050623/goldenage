@@ -48,7 +48,7 @@ const GoldPriceTable = () => {
 
     return (
         <div className="container" style={{ marginTop: '100px' }}>
-            <h2 className="mb-4">Bảng Giá Vàng</h2>
+            <h2 className="mb-4">Gold Price</h2>
             <div className="table-responsive">
                 <table className="table table-striped table-bordered">
                     <thead className="table-dark">

@@ -22,17 +22,6 @@ export const Navigation = () => {
         <Link className="navbar-brand" to="/">
           React Landing Page
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -53,7 +42,7 @@ export const Navigation = () => {
                   </span>
                 </li>
                 <li className="nav-item">
-                  <button 
+                  <button
                     onClick={handleLogout}
                     className="nav-link btn btn-link"
                   >
